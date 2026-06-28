@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42c6fed02f516109a1d37a1679ae253, type: 3}
+  m_Name: Arondight
+  m_EditorClassIdentifier: 
+  itemID: arondight
+  sceneID: 0
+  itemType: 0
+  state: 0
+  spawnPosition: {x: 0, y: 4, z: 0}
+  itemPrefab: {fileID: 8372676152640828798, guid: 4be78aa95a221f26e93671a223ff3617, type: 3}
+  message: Esta espada es "Arondight", forjada para los justos, temida por los malvados.
+  damage: 5
+  pushForce: 10
+  weaponSprite: {fileID: 21300000, guid: 2f6f72d84123bb66eb38544b08543396, type: 3}
+  weaponName: Arondight
+  weaponPrefab: {fileID: 2980775954737337907, guid: 29d770d92566d744ebbaf89901885e46, type: 3}
+  animatorItemID: 4
+  attackSound: 1
+  isFiringWeapon: 0
+  requiresReload: 0
+  projectilePrefab: {fileID: 0}
+  canUseShield: 1
+  blockMoveSpeedMultiplier: 0.4

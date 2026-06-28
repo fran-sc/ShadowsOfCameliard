@@ -1,0 +1,975 @@
+fileFormatVersion: 2
+guid: ec54869ddb3dde6e9b86b52b621c6ba3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7427637059352657555
+    second: Shadows_Logo_0
+  - first:
+      213: 1475815019369342312
+    second: Shadows_Logo_1
+  - first:
+      213: 6941995490090488928
+    second: Shadows_Logo_2
+  - first:
+      213: -7414478381353308285
+    second: Shadows_Logo_3
+  - first:
+      213: 1454863669434122091
+    second: Shadows_Logo_4
+  - first:
+      213: 4345797815089626643
+    second: Shadows_Logo_5
+  - first:
+      213: -8215598965932622706
+    second: Shadows_Logo_6
+  - first:
+      213: 7395222923053432529
+    second: Shadows_Logo_7
+  - first:
+      213: -7735889301563536604
+    second: Shadows_Logo_8
+  - first:
+      213: 7002683997328385073
+    second: Shadows_Logo_9
+  - first:
+      213: 5566197051558597228
+    second: Shadows_Logo_10
+  - first:
+      213: 7251406456593758730
+    second: Shadows_Logo_11
+  - first:
+      213: -519780522781194211
+    second: Shadows_Logo_12
+  - first:
+      213: 4393289499619914799
+    second: Shadows_Logo_13
+  - first:
+      213: -825367018791062277
+    second: Shadows_Logo_14
+  - first:
+      213: -8251826533707711563
+    second: Shadows_Logo_15
+  - first:
+      213: 6841242336020520949
+    second: Shadows_Logo_16
+  - first:
+      213: -4384643251597255601
+    second: Shadows_Logo_17
+  - first:
+      213: 5058050297548042631
+    second: Shadows_Logo_18
+  - first:
+      213: 5530914546074443021
+    second: Shadows_Logo_19
+  - first:
+      213: -7080870147020851141
+    second: Shadows_Logo_20
+  - first:
+      213: -5927785901480272987
+    second: Shadows_Logo_21
+  - first:
+      213: 2150015260381698063
+    second: Shadows_Logo_22
+  - first:
+      213: -7345713371593364630
+    second: Shadows_Logo_23
+  - first:
+      213: 2328069541191832723
+    second: Shadows_Logo_24
+  - first:
+      213: 2976613221843554006
+    second: Shadows_Logo_25
+  - first:
+      213: 6286125844218823793
+    second: Shadows_Logo_26
+  - first:
+      213: 3623962242185008740
+    second: Shadows_Logo_27
+  - first:
+      213: 7822130050589716620
+    second: Shadows_Logo_28
+  - first:
+      213: -2898554620739688885
+    second: Shadows_Logo_29
+  - first:
+      213: 8131309013379228379
+    second: Shadows_Logo_30
+  - first:
+      213: 6137027396191620623
+    second: Shadows_Logo_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Shadows_Logo_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 0
+        width: 218
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39efd3b5d84441760800000000000000
+      internalID: 7427637059352657555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 160
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86522bfd0f52b7410800000000000000
+      internalID: 1475815019369342312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_2
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 622
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06415333e1ce65060800000000000000
+      internalID: 6941995490090488928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_3
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 302
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38f6f9c123b7a1990800000000000000
+      internalID: -7414478381353308285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_4
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 286
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6ffd359cc6b03410800000000000000
+      internalID: 1454863669434122091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_5
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 126
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31ef51a76106f4c30800000000000000
+      internalID: 4345797815089626643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_6
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 94
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8cf482c4445cfd80800000000000000
+      internalID: -8215598965932622706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_7
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 38
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1defc63211c11a660800000000000000
+      internalID: 7395222923053432529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_8
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 30
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42b8f8eaaa994a490800000000000000
+      internalID: -7735889301563536604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_9
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 990
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13422176ef78e2160800000000000000
+      internalID: 7002683997328385073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_10
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 982
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c621af73aba1f3d40800000000000000
+      internalID: 5566197051558597228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_11
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 974
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0abe3fa0cb22a460800000000000000
+      internalID: 7251406456593758730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_12
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 798
+        width: 6
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d18c5725e5e59c8f0800000000000000
+      internalID: -519780522781194211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_13
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 680
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f247c44f58918fc30800000000000000
+      internalID: 4393289499619914799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_14
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 670
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf4b2a3c115bb84f0800000000000000
+      internalID: -825367018791062277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_15
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 534
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bb7536dc7f9b7d80800000000000000
+      internalID: -8251826533707711563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_16
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 230
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ffdddc78a9f0fe50800000000000000
+      internalID: 6841242336020520949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_17
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 222
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4c5bb9813e9623c0800000000000000
+      internalID: -4384643251597255601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_18
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 182
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 781f86962fdc13640800000000000000
+      internalID: 5058050297548042631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_19
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 166
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0ddec1c971c1cc40800000000000000
+      internalID: 5530914546074443021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_20
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 118
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b38772a0e12bbbd90800000000000000
+      internalID: -7080870147020851141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_21
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 62
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ab13bd11264cbda0800000000000000
+      internalID: -5927785901480272987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_22
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 54
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0858b0fc7366dd10800000000000000
+      internalID: 2150015260381698063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_23
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 0
+        width: 1259
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6b27589b98ce0a90800000000000000
+      internalID: -7345713371593364630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_24
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 184
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 394552fb9e6fe4020800000000000000
+      internalID: 2328069541191832723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_25
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 201
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de47b954fd0f4920800000000000000
+      internalID: 2976613221843554006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_26
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 93
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 174c016662ecc3750800000000000000
+      internalID: 6286125844218823793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_27
+      rect:
+        serializedVersion: 2
+        x: 1015
+        y: 96
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4669ddc6576ea4230800000000000000
+      internalID: 3623962242185008740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_28
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 93
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c80fe4c66d9cd8c60800000000000000
+      internalID: 7822130050589716620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_29
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 992
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b466ebcfde346c7d0800000000000000
+      internalID: -2898554620739688885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_30
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 102
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd2a665577638d070800000000000000
+      internalID: 8131309013379228379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadows_Logo_31
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 72
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0e87d6c6e91b2550800000000000000
+      internalID: 6137027396191620623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Shadows_Logo_0: 7427637059352657555
+      Shadows_Logo_1: 1475815019369342312
+      Shadows_Logo_10: 5566197051558597228
+      Shadows_Logo_11: 7251406456593758730
+      Shadows_Logo_12: -519780522781194211
+      Shadows_Logo_13: 4393289499619914799
+      Shadows_Logo_14: -825367018791062277
+      Shadows_Logo_15: -8251826533707711563
+      Shadows_Logo_16: 6841242336020520949
+      Shadows_Logo_17: -4384643251597255601
+      Shadows_Logo_18: 5058050297548042631
+      Shadows_Logo_19: 5530914546074443021
+      Shadows_Logo_2: 6941995490090488928
+      Shadows_Logo_20: -7080870147020851141
+      Shadows_Logo_21: -5927785901480272987
+      Shadows_Logo_22: 2150015260381698063
+      Shadows_Logo_23: -7345713371593364630
+      Shadows_Logo_24: 2328069541191832723
+      Shadows_Logo_25: 2976613221843554006
+      Shadows_Logo_26: 6286125844218823793
+      Shadows_Logo_27: 3623962242185008740
+      Shadows_Logo_28: 7822130050589716620
+      Shadows_Logo_29: -2898554620739688885
+      Shadows_Logo_3: -7414478381353308285
+      Shadows_Logo_30: 8131309013379228379
+      Shadows_Logo_31: 6137027396191620623
+      Shadows_Logo_4: 1454863669434122091
+      Shadows_Logo_5: 4345797815089626643
+      Shadows_Logo_6: -8215598965932622706
+      Shadows_Logo_7: 7395222923053432529
+      Shadows_Logo_8: -7735889301563536604
+      Shadows_Logo_9: 7002683997328385073
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

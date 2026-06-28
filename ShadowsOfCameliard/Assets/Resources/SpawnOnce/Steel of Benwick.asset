@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42c6fed02f516109a1d37a1679ae253, type: 3}
+  m_Name: Steel of Benwick
+  m_EditorClassIdentifier: 
+  itemID: main_sword
+  sceneID: 1
+  itemType: 0
+  state: 1
+  spawnPosition: {x: -2.5, y: 0.3, z: 0}
+  itemPrefab: {fileID: 8372676152640828798, guid: 15993dccc043269518d8a58607659b81, type: 3}
+  message: "El \"Acero de Benwick\". Una hoja humilde en manos de un h\xE9roe puede
+    cambiar el destino de un reino."
+  damage: 1
+  pushForce: 4
+  weaponSprite: {fileID: 21300000, guid: 6161165a89b2d21aa80ac8df2d12ba8e, type: 3}
+  weaponName: Steel of Benwick
+  weaponPrefab: {fileID: 2980775954737337907, guid: f93d5445b617e481895b775cfb16e410, type: 3}
+  animatorItemID: 1
+  attackSound: 1
+  isFiringWeapon: 0
+  requiresReload: 0
+  projectilePrefab: {fileID: 0}
+  canUseShield: 1
+  blockMoveSpeedMultiplier: 0.4

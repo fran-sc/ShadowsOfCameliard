@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42c6fed02f516109a1d37a1679ae253, type: 3}
+  m_Name: Flame of Pendragon
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnOnceWeaponSO
+  itemID: pendragon
+  sceneID: 1
+  itemType: 0
+  state: 0
+  spawnPosition: {x: -51, y: 18, z: 0}
+  itemPrefab: {fileID: 8372676152640828798, guid: c4a0044d7bd8d4552baef11205b02c6e, type: 3}
+  message: "Esta p\xF3cima es la \"Llama de Pendrag\xF3n\", el fuego del linaje de
+    Arturo, sellado en cristal por la mano de Merl\xEDn."
+  damage: 10
+  pushForce: 10
+  weaponSprite: {fileID: 21300000, guid: 2239a9a229a0d0f5384e8e0b739c06be, type: 3}
+  weaponName: Flame of Pendragon
+  weaponPrefab: {fileID: 8449563807782949779, guid: cb0182b428e64f91f8da88f3eb4429b4, type: 3}
+  animatorItemID: 3
+  attackSound: 0
+  isFiringWeapon: 1
+  requiresReload: 1
+  projectilePrefab: {fileID: 2494147122243128475, guid: 5396f6a414960d6ddbe2c104ec8417ef, type: 3}
+  canUseShield: 0
+  blockMoveSpeedMultiplier: 0.4
