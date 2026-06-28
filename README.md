@@ -1,11 +1,3 @@
-### Máster de Diseño y Programación de Videojuegos 
-## Programación de Videojuegos 2D
-#### Francisco Gabriel Montoiro Cabada
-
-<hr>
-
-## **PROYECTO**
-
 ![title](docs/img/Shadows_Logo_small.png)
 ![gameplay](docs/img/gameplay.png)
 
