@@ -69,8 +69,6 @@ public class UIFade : PersistentSingleton<UIFade>
     // -----------------------------------------------------------------------------
     public void FadeFromBlack()
     {
-        Debug.Log("UIFade.FadeFromBlack(): Starting fade from black.");
-
         if (fadeCoroutine != null)
         {
             StopCoroutine(fadeCoroutine); // Cancela el fundido en curso para evitar solapamientos
@@ -102,8 +100,6 @@ public class UIFade : PersistentSingleton<UIFade>
     // -----------------------------------------------------------------------------
     private IEnumerator Fade(float targetAlpha)
     {
-        Debug.Log($"UIFade.Fade(): Starting fade to alpha {targetAlpha} over {fadeDuration} seconds.");
-
         if (fadeImage == null)
         {
             Debug.LogError("UIFade.Fade(): fadeImage is not assigned.");
@@ -114,17 +110,17 @@ public class UIFade : PersistentSingleton<UIFade>
         float startAlpha = color.a;
         float time = 0;
 
-        Debug.Log($"UIFade.Fade(): Entering fade loop. Start alpha: {startAlpha}, Target alpha: {targetAlpha}");
-
         while (time < fadeDuration)
         {
             time += Time.deltaTime;
-            color.a = Mathf.Lerp(startAlpha, targetAlpha, time / fadeDuration); // Interpolación lineal del alpha según el tiempo transcurrido
+            // Interpolación lineal del alpha según el tiempo transcurrido
+            color.a = Mathf.Lerp(startAlpha, targetAlpha, time / fadeDuration); 
             fadeImage.color = color;
             yield return null;
         }
 
-        color.a = targetAlpha; // Fija el valor exacto final para evitar imprecisiones de punto flotante
+        // Fija el valor exacto final para evitar imprecisiones de punto flotante
+        color.a = targetAlpha; 
         fadeImage.color = color;
 
         Debug.Log($"UIFade.Fade(): Fade completed. Final alpha: {targetAlpha}");

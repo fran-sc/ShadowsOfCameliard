@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9453529c946b6c4ba6979f98ec47eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseIcon: {fileID: 2800000, guid: 5684aec390ab520cd954802b876735ae, type: 3}
+  mouseIcon: {fileID: 2800000, guid: 5c06e3ca1310f7991ae9d1f514b041c1, type: 3}
   sizeFactor: {x: 1, y: 1}

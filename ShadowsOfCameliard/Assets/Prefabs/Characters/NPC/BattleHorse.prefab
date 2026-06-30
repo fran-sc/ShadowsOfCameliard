@@ -173,7 +173,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1259732109, guid: 5da08191a6ed9d70fbba3308c208d789, type: 3}
+  m_Sprite: {fileID: -4871289362334547592, guid: 06eb391c7f6120ef2b3c3c8480c1a6c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -327,4 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAI
   idleStepDuration: 3
+  talkLineWhenSpawn: 
   talkLines: []
+  isHealer: 0
+  healAmount: 5

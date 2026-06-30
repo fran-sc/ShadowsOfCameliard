@@ -61,8 +61,6 @@ public class SceneManagement : PersistentSingleton<SceneManagement>
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log($"SceneManagement.OnSceneLoaded(): Scene {scene.name} loaded. Spawning resources...");
-
         // Instanciamos los recursos de la escena actual
         SpawnSceneResources(scene.buildIndex);
     }
@@ -92,9 +90,7 @@ public class SceneManagement : PersistentSingleton<SceneManagement>
             // recogido ni destruido), lo instanciamos en la posición predeterminada
             if (resource.state == SpawnOnceSO.SpawnOnceState.ToSpawn ||
                 resource.state == SpawnOnceSO.SpawnOnceState.Spawned)
-            {
-                Debug.Log($"SceneManagement.SpawnSceneResources(): Spawning resource {resource.name} at {resource.spawnPosition}.");
-                
+            {               
                 GameObject gameObject = Instantiate(
                     resource.itemPrefab, resource.spawnPosition, Quaternion.identity);
                 
