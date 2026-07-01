@@ -19,7 +19,7 @@ using UnityEngine.UI;
 // - La propiedad FadeDuration es de solo lectura y se expone para que otras clases
 //   puedan esperar la duración exacta del efecto.
 // -----------------------------------------------------------------------------
-public class UIFade : PersistentSingleton<UIFade>
+public class UIFade : SceneSingleton<UIFade>
 {
     [SerializeField] Image fadeImage;
     [SerializeField] float fadeDuration;
@@ -122,8 +122,6 @@ public class UIFade : PersistentSingleton<UIFade>
         // Fija el valor exacto final para evitar imprecisiones de punto flotante
         color.a = targetAlpha; 
         fadeImage.color = color;
-
-        Debug.Log($"UIFade.Fade(): Fade completed. Final alpha: {targetAlpha}");
 
         yield return null;
     }

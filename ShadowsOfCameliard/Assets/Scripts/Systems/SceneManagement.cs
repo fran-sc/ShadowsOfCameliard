@@ -61,6 +61,13 @@ public class SceneManagement : PersistentSingleton<SceneManagement>
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Reproducción de música de fondo para la escena actual
+        if (AudioManager.Instance != null)
+        {
+            //AudioManager.Instance.SetMusicVolume(1f); // Aseguramos que el volumen de la música esté al máximo antes de reproducirla
+            AudioManager.Instance.PlayMusic(AudioManager.Music.MainTheme);
+        }
+
         // Instanciamos los recursos de la escena actual
         SpawnSceneResources(scene.buildIndex);
     }

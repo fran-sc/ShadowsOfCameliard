@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/CodexIntro.unity
+    path: Assets/Scenes/Codex.unity
     guid: 6a92a656d9df7fc5fa4d8720aa5b48fe
   - enabled: 1
     path: Assets/Scenes/Countryside.unity

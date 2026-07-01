@@ -39,9 +39,16 @@ public class CodexSimpl : MonoBehaviour
 
     int currentRightPageIndex = 0;
 
+    // Flag que indica si se está avanzando a una posición del libro
     bool isTransitionInProgress = false;
-    bool isPageTurning = false;
+    
+    // Flag que indica si el libro se está desplazando
     bool isBookMoving = false;
+
+    // Flag que indica si se está girando una página
+    bool isPageTurning = false; 
+
+    public bool IsPerformingAction => isBookMoving || isPageTurning || isTransitionInProgress;
 
     int pendingPageToHideIndex = -1;
 
@@ -64,6 +71,12 @@ public class CodexSimpl : MonoBehaviour
     {
         Vector3 initialPosition = transform.localPosition - new Vector3(bookWidth / 2f, 0f, 0f);
         transform.localPosition = initialPosition;
+
+        // Recuperamos el índice de página inicial desde GameManager
+        if (GameManager.Instance != null)
+        {
+            startingPageIndex = GameManager.Instance.StartingLeafIndex;
+        }
 
         if (startingPageIndex > 0)
         {
@@ -95,6 +108,8 @@ public class CodexSimpl : MonoBehaviour
 
     IEnumerator GotoPageRoutine(int pageIndex)
     {
+        yield return new WaitForSeconds(1f); // Pequeña espera para asegurar que la escena y el códice estén listos
+
         pageIndex = Mathf.Clamp(pageIndex, 0, codexPages.Length - 1);
 
         while (currentRightPageIndex < pageIndex)
@@ -118,7 +133,7 @@ public class CodexSimpl : MonoBehaviour
     // - Al abrir o cerrar la cubierta llaman a RecentreBook para desplazar el libro.
     // - Gestionan la visibilidad de la página pendiente de ocultar.
     // -----------------------------------------------------------------------------
-    void GoForward()
+    public void GoForward()
     {
         if (isTransitionInProgress) return;
         if (currentRightPageIndex >= codexPages.Length - 1) return;
@@ -141,7 +156,7 @@ public class CodexSimpl : MonoBehaviour
         nextPage.gameObject.SetActive(true);
     }
 
-    void GoBackward()
+    public void GoBackward()
     {
         if (isTransitionInProgress) return;
         if (currentRightPageIndex <= 0) return;
@@ -265,19 +280,5 @@ public class CodexSimpl : MonoBehaviour
         if (isBookMoving) return;
 
         isTransitionInProgress = false;
-    }
-
-    public void ActionForward(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-
-        GoForward();
-    }
-
-    public void ActionBackward(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-
-        GoBackward();
     }
 }

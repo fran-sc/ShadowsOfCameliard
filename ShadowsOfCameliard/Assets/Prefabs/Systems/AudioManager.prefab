@@ -276,5 +276,10 @@ MonoBehaviour:
   - type: 2
     clip: {fileID: 8300000, guid: 2e86098a30153648eb44179c0f34b6fa, type: 3}
     volume: 1
+  musicTracks:
+  - type: 2
+    clip: {fileID: 8300000, guid: b7de7bde908224bc4a5f16138dcabc94, type: 3}
+  - type: 1
+    clip: {fileID: 8300000, guid: 307e60003eea7c56b9cb27ea056d81ed, type: 3}
   musicVolume: 1
   effectsVolume: 1

@@ -39,6 +39,13 @@ public class AudioManager : PersistentSingleton<AudioManager>
         Heal
     }
 
+    public enum Music
+    {
+        None,
+        MainTheme,
+        CodexTheme
+    }
+
     [Serializable]
     private class SoundEntry
     {
@@ -49,6 +56,13 @@ public class AudioManager : PersistentSingleton<AudioManager>
         public float volume = 1f;
     }
 
+    [Serializable]
+    private class MusicEntry
+    {
+        public Music type;
+        public AudioClip clip;
+    }
+
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource effectsSource;
@@ -56,12 +70,18 @@ public class AudioManager : PersistentSingleton<AudioManager>
     [Header("Sound Effects")]
     [SerializeField] private SoundEntry[] soundEffects;
 
+    [Header("Music Tracks")]
+    [SerializeField] private MusicEntry[] musicTracks;
+
     [Header("Global Volumes")]
     [Range(0f, 1f)]
     [SerializeField] private float musicVolume = 1f;
 
     [Range(0f, 1f)]
     [SerializeField] private float effectsVolume = 1f;
+
+    public float MusicVolume => musicVolume;
+    public float EffectsVolume => effectsVolume;
 
     private Coroutine musicFadeCoroutine;
 
@@ -146,6 +166,30 @@ public class AudioManager : PersistentSingleton<AudioManager>
     // - Si el clip ya está sonando y restartIfSameClip es false, solo restaura el volumen.
     // - Cancela cualquier fade en curso antes de reproducir.
     // -----------------------------------------------------------------------------
+    public void PlayMusic(Music musicType, bool restartIfSameClip = false)
+    {
+        if (musicSource == null)
+        {
+            Debug.LogWarning("AudioManager: No hay AudioSource asignado para música.");
+            return;
+        }
+
+        MusicEntry musicEntry = GetMusicEntry(musicType);
+
+        if (musicEntry == null)
+        {
+            Debug.LogWarning($"AudioManager: No se ha encontrado la música {musicType}.");
+            return;
+        }
+
+        if (musicEntry.clip == null)
+        {
+            Debug.LogWarning($"AudioManager: La música {musicType} no tiene AudioClip asignado.");
+            return;
+        }
+
+        PlayMusic(musicEntry.clip, restartIfSameClip);
+    }
     public void PlayMusic(AudioClip musicClip, bool restartIfSameClip = false)
     {
         if (musicSource == null)
@@ -283,6 +327,19 @@ public class AudioManager : PersistentSingleton<AudioManager>
             if (soundEntry.type == soundType)
             {
                 return soundEntry;
+            }
+        }
+
+        return null;
+    }
+
+    private MusicEntry GetMusicEntry(Music musicType)
+    {
+        foreach (MusicEntry musicEntry in musicTracks)
+        {
+            if (musicEntry.type == musicType)
+            {
+                return musicEntry;
             }
         }
 

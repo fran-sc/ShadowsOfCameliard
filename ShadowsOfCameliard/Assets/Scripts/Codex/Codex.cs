@@ -35,7 +35,9 @@ public class Codex : MonoBehaviour
 
     int currentRightPageIndex = 0;
 
-    bool isTurning = false; // Variable para controlar si se está girando una página
+    // Flag que indica si se está girando una página
+    bool isTurning = false; 
+    public bool IsTurning => isTurning;
 
     void Start()
     {
@@ -83,7 +85,7 @@ public class Codex : MonoBehaviour
     // - Voltea la página actual hacia adelante, desplaza el libro si es la cubierta
     //   y programa ocultar la página anterior tras el TurnDuration.
     // -----------------------------------------------------------------------------
-    void GoForward()
+    public void GoForward()
     {
         if (currentRightPageIndex >= codexPages.Length - 1) return;
 
@@ -137,7 +139,7 @@ public class Codex : MonoBehaviour
     }
 
 
-    void GoBackward()
+    public void GoBackward()
     {
         if (currentRightPageIndex <= 0) return;
 

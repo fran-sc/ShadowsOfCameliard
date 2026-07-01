@@ -531,6 +531,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Play"",
+                    ""type"": ""Button"",
+                    ""id"": ""a886958c-8e39-44f8-ba55-eddd8281d0b7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -575,6 +584,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Backward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0fc0aa8d-2fef-463a-9435-1627c4c00de0"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7aca0251-ede9-4b4b-90f2-1f9acbdab4b2"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""716f15f1-d1b9-49a1-bb5b-41374e7a7857"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -631,6 +673,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Codex = asset.FindActionMap("Codex", throwIfNotFound: true);
         m_Codex_Forward = m_Codex.FindAction("Forward", throwIfNotFound: true);
         m_Codex_Backward = m_Codex.FindAction("Backward", throwIfNotFound: true);
+        m_Codex_Play = m_Codex.FindAction("Play", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -1081,6 +1124,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<ICodexActions> m_CodexActionsCallbackInterfaces = new List<ICodexActions>();
     private readonly InputAction m_Codex_Forward;
     private readonly InputAction m_Codex_Backward;
+    private readonly InputAction m_Codex_Play;
     /// <summary>
     /// Provides access to input actions defined in input action map "Codex".
     /// </summary>
@@ -1100,6 +1144,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Codex/Backward".
         /// </summary>
         public InputAction @Backward => m_Wrapper.m_Codex_Backward;
+        /// <summary>
+        /// Provides access to the underlying input action "Codex/Play".
+        /// </summary>
+        public InputAction @Play => m_Wrapper.m_Codex_Play;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1132,6 +1180,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Backward.started += instance.OnBackward;
             @Backward.performed += instance.OnBackward;
             @Backward.canceled += instance.OnBackward;
+            @Play.started += instance.OnPlay;
+            @Play.performed += instance.OnPlay;
+            @Play.canceled += instance.OnPlay;
         }
 
         /// <summary>
@@ -1149,6 +1200,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Backward.started -= instance.OnBackward;
             @Backward.performed -= instance.OnBackward;
             @Backward.canceled -= instance.OnBackward;
+            @Play.started -= instance.OnPlay;
+            @Play.performed -= instance.OnPlay;
+            @Play.canceled -= instance.OnPlay;
         }
 
         /// <summary>
@@ -1323,5 +1377,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBackward(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Play" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPlay(InputAction.CallbackContext context);
     }
 }

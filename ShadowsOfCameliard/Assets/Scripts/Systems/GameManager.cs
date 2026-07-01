@@ -9,12 +9,26 @@ using UnityEngine;
 // -----------------------------------------------------------------------------
 public class GameManager : PersistentSingleton<GameManager>
 {
-    [SerializeField] AudioClip mainTheme;
+    [Header("Codex Settings")]
+    [SerializeField] int startingLeafIndex = 0;
+    [SerializeField] int lastLeafIndex = 5;
+    [SerializeField] string nextSceneName = "Countryside";
 
-    void Start()
+    public int StartingLeafIndex => startingLeafIndex;
+    public void SetStartingLeafIndex(int index) 
     {
-        AudioManager.Instance.PlayMusic(mainTheme);
+        startingLeafIndex = index;
     }
 
+    public int LastLeafIndex => lastLeafIndex;
+    public void SetLastLeafIndex(int index) 
+    {
+        lastLeafIndex = index;
+    }
 
+    public string NextSceneName => nextSceneName;
+    public void SetNextSceneName(string sceneName) 
+    {
+        nextSceneName = sceneName;
+    }
 }

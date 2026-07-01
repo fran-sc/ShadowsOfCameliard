@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 // - Permite reiniciar el juego completamente sin residuos de sesiones anteriores.
 //
 // Notas:
-// - Usa un GameObject temporal para acceder a la escena DontDestroyOnLoad.
+// - Usa un GameObject temporal para acceder al contenedor DontDestroyOnLoad.
 // - ReloadSceneFromScratch combina la destrucción de persistentes con la carga.
 // -----------------------------------------------------------------------------
 public static class GameReset
@@ -29,11 +29,12 @@ public static class GameReset
     // -----------------------------------------------------------------------------
     // DestroyDontDestroyOnLoadObjects
     //
-    // - Localiza la escena DontDestroyOnLoad mediante un GameObject temporal.
+    // - Localiza el contenedor DontDestroyOnLoad mediante un GameObject temporal.
     // - Destruye todos sus objetos raíz excepto el temporal auxiliar.
     // -----------------------------------------------------------------------------
     public static void DestroyDontDestroyOnLoadObjects()
     {
+        // Creamos un GameObject temporal para acceder al contenedor DontDestroyOnLoad
         GameObject temp = new GameObject("TempDDOLFinder");
         Object.DontDestroyOnLoad(temp);
 
@@ -41,7 +42,7 @@ public static class GameReset
 
         foreach (GameObject root in dontDestroyScene.GetRootGameObjects())
         {
-            if (root != temp)
+            if (root != temp && root.name != "GameManager" && root.name != "SceneManagement" && root.name != "AudioManager" && root.name != "UIFade")
             {
                 Object.Destroy(root);
             }
