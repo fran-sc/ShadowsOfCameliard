@@ -43,7 +43,8 @@ public class AudioManager : PersistentSingleton<AudioManager>
     {
         None,
         MainTheme,
-        CodexTheme
+        CodexTheme,
+        TitleTheme
     }
 
     [Serializable]
@@ -74,16 +75,23 @@ public class AudioManager : PersistentSingleton<AudioManager>
     [SerializeField] private MusicEntry[] musicTracks;
 
     [Header("Global Volumes")]
+    [SerializeField] bool musicOn = true;
+
     [Range(0f, 1f)]
     [SerializeField] private float musicVolume = 1f;
+
+    [SerializeField] bool effectsOn = true;
 
     [Range(0f, 1f)]
     [SerializeField] private float effectsVolume = 1f;
 
+    public bool MusicOn => musicOn;
     public float MusicVolume => musicVolume;
     public float EffectsVolume => effectsVolume;
 
-    private Coroutine musicFadeCoroutine;
+    public bool EffectsOn => effectsOn;
+
+    Coroutine musicFadeCoroutine;
 
     protected override void Awake()
     {
@@ -117,6 +125,8 @@ public class AudioManager : PersistentSingleton<AudioManager>
     // -----------------------------------------------------------------------------
     public void PlayEffect(Effect soundType)
     {
+        if (!effectsOn) return;
+
         if (effectsSource == null)
         {
             Debug.LogWarning("AudioManager: No hay AudioSource asignado para efectos.");
@@ -143,6 +153,8 @@ public class AudioManager : PersistentSingleton<AudioManager>
 
     public void PlayEffect(AudioClip clip, float volume = 1f)
     {
+        if (!effectsOn) return;
+
         if (effectsSource == null)
         {
             Debug.LogWarning("AudioManager: No hay AudioSource asignado para efectos.");
@@ -168,6 +180,8 @@ public class AudioManager : PersistentSingleton<AudioManager>
     // -----------------------------------------------------------------------------
     public void PlayMusic(Music musicType, bool restartIfSameClip = false)
     {
+        if (!musicOn) return;
+
         if (musicSource == null)
         {
             Debug.LogWarning("AudioManager: No hay AudioSource asignado para música.");
@@ -190,8 +204,11 @@ public class AudioManager : PersistentSingleton<AudioManager>
 
         PlayMusic(musicEntry.clip, restartIfSameClip);
     }
+
     public void PlayMusic(AudioClip musicClip, bool restartIfSameClip = false)
     {
+        if (!musicOn) return;
+
         if (musicSource == null)
         {
             Debug.LogWarning("AudioManager: No hay AudioSource asignado para música.");
@@ -224,10 +241,7 @@ public class AudioManager : PersistentSingleton<AudioManager>
 
     public void StopMusic()
     {
-        if (musicSource == null)
-        {
-            return;
-        }
+        if (musicSource == null) return;
 
         if (musicFadeCoroutine != null)
         {
@@ -247,15 +261,7 @@ public class AudioManager : PersistentSingleton<AudioManager>
     // -----------------------------------------------------------------------------
     public void StopMusicWithFade(float fadeDuration = 1f)
     {
-        if (musicSource == null)
-        {
-            return;
-        }
-
-        if (!musicSource.isPlaying)
-        {
-            return;
-        }
+        if (musicSource == null || !musicSource.isPlaying) return;
 
         if (musicFadeCoroutine != null)
         {
@@ -344,5 +350,25 @@ public class AudioManager : PersistentSingleton<AudioManager>
         }
 
         return null;
+    }
+
+    public void ToggleMusic(bool isOn)
+    {
+        musicOn = isOn;
+
+        if (!musicOn && musicSource != null && musicSource.isPlaying)
+        {
+            StopMusic();
+        }
+
+        if (musicOn && musicSource != null && musicSource.clip != null && !musicSource.isPlaying)
+        {
+            musicSource.Play();
+        }
+    }
+
+    public void ToggleEffects(bool isOn)
+    {
+        effectsOn = isOn;
     }
 }

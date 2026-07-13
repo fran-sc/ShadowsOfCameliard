@@ -26,9 +26,31 @@ public class GameManager : PersistentSingleton<GameManager>
         lastLeafIndex = index;
     }
 
+    int startChapter = 0;
+    public int StartChapter => startChapter;
+    public void SetStartChapter(int value)
+    {
+        startChapter = value;
+    }
+
+    int lastUnlockedChapter = 2;
+    public int LastUnlockedChapter => lastUnlockedChapter;
+
     public string NextSceneName => nextSceneName;
     public void SetNextSceneName(string sceneName) 
     {
         nextSceneName = sceneName;
+    }
+
+    void Start()
+    {
+        // Recupera el último capítulo desbloqueado
+        lastUnlockedChapter = SaveManager.Instance.LastUnlockedChapter;
+    }
+
+    public void SaveLastUnlockedChapter(int chapterIndex)
+    {
+        PlayerPrefs.SetInt("LastUnlockedChapter", chapterIndex);
+        PlayerPrefs.Save();
     }
 }

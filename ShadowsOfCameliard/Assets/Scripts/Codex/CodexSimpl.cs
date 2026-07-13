@@ -30,7 +30,7 @@ public class CodexSimpl : MonoBehaviour
 
     [Header("Codex Pages")]
     [SerializeField] CodexPageSimpl[] codexPages;
-    [SerializeField] int startingPageIndex = 0;
+    [SerializeField] int startingLeafIndex = 0;
 
     [Header("Camera Settings")]
     [SerializeField] Camera codexCamera;
@@ -75,12 +75,12 @@ public class CodexSimpl : MonoBehaviour
         // Recuperamos el índice de página inicial desde GameManager
         if (GameManager.Instance != null)
         {
-            startingPageIndex = GameManager.Instance.StartingLeafIndex;
+            startingLeafIndex = GameManager.Instance.StartingLeafIndex;
         }
 
-        if (startingPageIndex > 0)
+        if (startingLeafIndex > 0)
         {
-            StartCoroutine(GotoPageRoutine(startingPageIndex));
+            StartCoroutine(GotoPageRoutine(startingLeafIndex));
         }
     }
 

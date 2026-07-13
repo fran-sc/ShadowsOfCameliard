@@ -15,5 +15,8 @@ public class TitleManager : MonoBehaviour
         {
             UIFade.Instance.FadeFromBlack();
         }
+
+        // Reproducimos la música del título
+        AudioManager.Instance.PlayMusic(AudioManager.Music.TitleTheme);
     }
 }

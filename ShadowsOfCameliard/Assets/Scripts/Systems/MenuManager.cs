@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuManager : PersistentSingleton<MenuManager>
 {
+    [Header("Menu References")]
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject inGameMenu;
     [SerializeField] GameObject chaptersMenu;
@@ -10,11 +12,24 @@ public class MenuManager : PersistentSingleton<MenuManager>
     [SerializeField] GameObject audioMenu;
     [SerializeField] GameObject controlsMenu;
 
+    [Header("Audio Settings References")]
+    [SerializeField] Toggle musicToggle;
+    [SerializeField] Slider musicVolumeSlider;
+    [SerializeField] Toggle effectsToggle;
+    [SerializeField] Slider effectsVolumeSlider;
+
+    [Header("Chapter Buttons References")]
+    [SerializeField] Button[] chapterButtons;
+
     Stack<GameObject> menuStack = new Stack<GameObject>();
 
     void Start()
     {
         HideAllMenus();
+
+        PresetAudioSettings();
+
+        PresetChapterButtons();
 
         ShowMainMenu();
     }
@@ -27,6 +42,29 @@ public class MenuManager : PersistentSingleton<MenuManager>
         audioMenu.SetActive(false);
         controlsMenu.SetActive(false);
     }
+
+    void PresetAudioSettings()
+    {
+        // Preset music settings
+        musicToggle.isOn = AudioManager.Instance.MusicOn;
+        musicVolumeSlider.value = AudioManager.Instance.MusicVolume;
+
+        // Preset effects settings
+        effectsToggle.isOn = AudioManager.Instance.EffectsOn;
+        effectsVolumeSlider.value = AudioManager.Instance.EffectsVolume;
+    }
+
+    void PresetChapterButtons()
+    {
+        // Preset chapter buttons based on player progress
+        int lastUnlockedChapter = GameManager.Instance.LastUnlockedChapter + 1; // +1 because index starts at 0
+
+        for (int i = 0; i < chapterButtons.Length; i++)
+        {
+            chapterButtons[i].interactable = (i < (lastUnlockedChapter - 1));
+        }   
+    }
+
     public void ShowMainMenu()
     {
         mainMenu.SetActive(true);
@@ -139,30 +177,30 @@ public class MenuManager : PersistentSingleton<MenuManager>
     // -------------------------------------------------------------------------
     // Audio Menu Buttons
     // -------------------------------------------------------------------------
-    public void AudioMenu_Back_OnClick()
-    {
-        audioMenu.SetActive(false);
-        menuStack.Pop().SetActive(true);
-    }
-
     public void AudioMenu_MusicVolume_OnValueChanged(float value)
     {
-        // ToDo: Adjust music volume
+        AudioManager.Instance.SetMusicVolume(value);
     }
 
     public void AudioMenu_MusicCheckbox_OnValueChanged(bool value)
     {
-        // ToDo: music on/off
+        AudioManager.Instance.ToggleMusic(value);
     }
 
     public void AudioMenu_EffectsVolume_OnValueChanged(float value)
     {
-        // ToDo: Adjust effects volume
+        AudioManager.Instance.SetEffectsVolume(value);
     }
 
     public void AudioMenu_EffectsCheckbox_OnValueChanged(bool value)
     {
-        // ToDo: effects on/off
+        AudioManager.Instance.ToggleEffects(value);
+    }
+
+    public void AudioMenu_Back_OnClick()
+    {
+        audioMenu.SetActive(false);
+        menuStack.Pop().SetActive(true);
     }
 
     // -------------------------------------------------------------------------
