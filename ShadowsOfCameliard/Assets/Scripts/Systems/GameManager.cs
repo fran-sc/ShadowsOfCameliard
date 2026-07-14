@@ -9,23 +9,7 @@ using UnityEngine;
 // -----------------------------------------------------------------------------
 public class GameManager : PersistentSingleton<GameManager>
 {
-    [Header("Codex Settings")]
-    [SerializeField] int startingLeafIndex = 0;
-    [SerializeField] int lastLeafIndex = 5;
-    [SerializeField] string nextSceneName = "Countryside";
-
-    public int StartingLeafIndex => startingLeafIndex;
-    public void SetStartingLeafIndex(int index) 
-    {
-        startingLeafIndex = index;
-    }
-
-    public int LastLeafIndex => lastLeafIndex;
-    public void SetLastLeafIndex(int index) 
-    {
-        lastLeafIndex = index;
-    }
-
+    // Capítulo desde el que se inicia el juego
     int startChapter = 0;
     public int StartChapter => startChapter;
     public void SetStartChapter(int value)
@@ -33,24 +17,27 @@ public class GameManager : PersistentSingleton<GameManager>
         startChapter = value;
     }
 
+    // primer capítulo desbloqueado
     int lastUnlockedChapter = 2;
     public int LastUnlockedChapter => lastUnlockedChapter;
 
-    public string NextSceneName => nextSceneName;
-    public void SetNextSceneName(string sceneName) 
+    void Start()
     {
-        nextSceneName = sceneName;
+        Initialize();
     }
 
-    void Start()
+    public void Initialize()
     {
         // Recupera el último capítulo desbloqueado
         lastUnlockedChapter = SaveManager.Instance.LastUnlockedChapter;
+
+        // Inicializa el sistema de menús
+        MenuManager.Instance.InitializeMenus(lastUnlockedChapter);   
     }
 
     public void SaveLastUnlockedChapter(int chapterIndex)
     {
-        PlayerPrefs.SetInt("LastUnlockedChapter", chapterIndex);
-        PlayerPrefs.Save();
+        SaveManager.Instance.UnlockChapter(chapterIndex);
+        lastUnlockedChapter = chapterIndex;
     }
 }

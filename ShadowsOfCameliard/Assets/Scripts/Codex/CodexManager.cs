@@ -13,6 +13,7 @@ using UnityEngine.InputSystem;
 public class CodexIndex
 {
     public int chapterNum;
+    public string chapterTitle;
     public int leafIndex;
     public string sceneName;
 }
@@ -37,9 +38,6 @@ public class CodexIndex
 // -----------------------------------------------------------------------------
 public class CodexManager : MonoBehaviour
 {
-    [Header("Final Settings")]
-    [SerializeField] bool isFinalScene = false;
-
     [Header("Codex Settings")]
     [SerializeField] CodexSimpl codex;
 
@@ -60,8 +58,9 @@ public class CodexManager : MonoBehaviour
 
     IEnumerator displayAdviceCoroutine;   
     
+    string nextSceneName;
     bool exitingCodex = false;
-    int lastLeafIndex = 5;
+    int lastUnlockedLeafIndex;
 
     void Awake()
     {
@@ -76,10 +75,10 @@ public class CodexManager : MonoBehaviour
             UIFade.Instance.FadeFromBlack();
         }   
 
-        // Recuperamos el índice de página inicial desde GameManager
+        // Recuperamos el índice de la última página desbloqueada del códice
         if (GameManager.Instance != null)
         {
-            lastLeafIndex = GameManager.Instance.LastLeafIndex;
+            lastUnlockedLeafIndex = GetLastLeafIndex();
         }
 
         // Reproducimos la música de fondo del códice si está disponible
@@ -88,39 +87,26 @@ public class CodexManager : MonoBehaviour
             AudioManager.Instance.PlayMusic(AudioManager.Music.CodexTheme);
         }
 
-        if (!isFinalScene)
-        {
-            // Iniciamos la corrutina para esperar a que el jugador interactúe con el códice.
-            StartCoroutine(WaitForIntereaction());
-        }
+        // Iniciamos la corrutina para esperar a que el jugador interactúe con el códice.
+        StartCoroutine(WaitForIntereaction());
     }
 
-    /*
-    void Update()
+    // Devuelve el índice de la última página desbloqueada del códice
+    // Esta paǵina será la primera del último capítulo desbloqueado y el jugador
+    // no podrá seguir avanzando más allá de ella.
+    int GetLastLeafIndex()
     {
-        if (exitingCodex) return;
-
-        // Comprobamos si llegamos a la última página desbloqueada del codex
-        if (codex != null && codex.CurrentRightPageIndex > lastLeafIndex)
+        for (int i = codexIndices.Length - 1; i >= 0; i--)
         {
-            if (!isFinalScene)
+            var index = codexIndices[i];
+            if (index.chapterNum <= GameManager.Instance.LastUnlockedChapter)
             {
-                // Cargamos la siguiente escena
-                ProcessChapterSceneEnter();
-            }
-            else
-            {
-                // Mostramos un mensaje en pantalla indicando que el jugador puede reiniciar el capítulo o salir del juego.
-                if (displayAdviceCoroutine != null)
-                {
-                    StopCoroutine(displayAdviceCoroutine);
-                }
-                displayAdviceCoroutine = DisplayAdvice(restartMessage, true);
-                StartCoroutine(displayAdviceCoroutine);
+                return index.leafIndex;
             }
         }
+
+        return lastUnlockedLeafIndex;
     }
-    */
 
     // -----------------------------------------------------------------------------
     // ProcessChapterSceneEnter
@@ -151,20 +137,28 @@ public class CodexManager : MonoBehaviour
             UIFade.Instance.FadeToBlack();
         }
 
-        // Lanzamos la corrutina de avance de página
-        codex.GoForward();
+        // Lanzamos la corrutina de avance de página con un retardo
+        StartCoroutine(AdvancePageAfterDelay(1f));
 
         // Obtenemos el nombre de la escena correspondiente al capítulo actual
-        string nextScene = codexIndices[chapterIndex].sceneName;
+        nextSceneName = codexIndices[chapterIndex].sceneName;
 
+        /*
         // Guardamos el nombre de la siguiente escena en GameManager para que pueda ser cargada después del fade-out de música
         if (GameManager.Instance != null)
         {
             GameManager.Instance.SetNextSceneName(nextScene);
         }
+        */
 
         // Iniciar la corrutina para esperar a que el fade-out termine y luego cargar la siguiente escena
         StartCoroutine(FadeOutMusicAndLoadNextScene(nextSceneDelay));
+    }
+
+    IEnumerator AdvancePageAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        codex.GoForward();
     }
 
     IEnumerator FadeOutMusicAndLoadNextScene(float fadeDuration)
@@ -189,9 +183,13 @@ public class CodexManager : MonoBehaviour
         }
 
         // Cargamos la siguiente escena
-        LoadNextScene();
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            GameReset.ReloadSceneFromScratch(nextSceneName);
+        }
     }
 
+    /*
     void LoadNextScene()
     {
         // Cargamos la siguiente escena
@@ -208,6 +206,7 @@ public class CodexManager : MonoBehaviour
         }
 
     }
+    */
 
     // Si durante los primeros segundos de la introducción el jugador no ha pasado ninguna página, 
     // se muestra un mensaje en pantalla indicando que use los controles de movimiento para pasar las páginas del códice.
@@ -282,7 +281,7 @@ public class CodexManager : MonoBehaviour
                 StopCoroutine(displayAdviceCoroutine);
             }
 
-            displayAdviceCoroutine = DisplayAdvice(enterChapterMessage, true);
+            displayAdviceCoroutine = DisplayAdvice(msg, true);
             StartCoroutine(displayAdviceCoroutine);
         }
     }
@@ -313,7 +312,7 @@ public class CodexManager : MonoBehaviour
     // -----------------------------------------------------------------------------
     int ChapterToPlay()
     {
-        // Determinamos si la página actual se corresponde con una página de inicio de capítulo
+        // Determinamos si la página actual se corresponde con un inicio de capítulo
         if (codex != null && codexIndices != null)
         {
             int currentPageIndex = codex.CurrentRightPageIndex;
@@ -321,7 +320,8 @@ public class CodexManager : MonoBehaviour
             for (int i = 0; i < codexIndices.Length; i++)
             {
                 var index = codexIndices[i];
-                if (index.leafIndex == currentPageIndex)
+                if (index.leafIndex == currentPageIndex && 
+                    !string.IsNullOrEmpty(index.sceneName))
                 {
                     return i;
                 }
@@ -339,37 +339,63 @@ public class CodexManager : MonoBehaviour
     // -----------------------------------------------------------------------------
     public void ActionForward(InputAction.CallbackContext context)
     {
-        if (context.performed && !codex.IsPerformingAction && !exitingCodex)
+        if (codex.IsPerformingAction || exitingCodex)
         {
-            if (codex.CurrentRightPageIndex == lastLeafIndex)
+            // No hacemos nada si el códice está en transición o si estamos saliendo del códice
+            return; 
+        }
+
+        if (codex.CurrentRightPageIndex == lastUnlockedLeafIndex)
+        {
+            // No avanzamos más allá de la última página desbloqueada
+            return; 
+        }
+
+        if (context.performed)
+        {
+            // Avanzamos una página
+            codex.GoForward();
+
+            // Si nos encontramos en un inicio de capítulo
+            if (ChapterToPlay() != -1)
             {
-                // No avanzamos más allá de la última página desbloqueada
-
-                // Si nos encontramos en un inicio de capítulo
-                if (ChapterToPlay() != -1)
+                // mostramos mensaje indicando que el jugador puede iniciarlo
+                if (displayAdviceCoroutine != null)
                 {
-                    // mostramos mensaje indicando que el jugador puede iniciarlo
-                    if (displayAdviceCoroutine != null)
-                    {
-                        StopCoroutine(displayAdviceCoroutine);
-                    }
-
-                    displayAdviceCoroutine = DisplayAdvice(enterChapterMessage, false);
-                    StartCoroutine(displayAdviceCoroutine);
+                    StopCoroutine(displayAdviceCoroutine);
                 }
 
-                return;
+                displayAdviceCoroutine = DisplayAdvice(enterChapterMessage, false);
+                StartCoroutine(displayAdviceCoroutine);
             }
-
-            codex.GoForward();
         }
     }
 
     public void ActionBackward(InputAction.CallbackContext context)
     {
-        if (context.performed && !codex.IsPerformingAction && !exitingCodex)
+        if (codex.IsPerformingAction || exitingCodex)
         {
+            // No hacemos nada si el códice está en transición o si estamos saliendo del códice
+            return; 
+        }
+
+        if (context.performed)
+        {
+            // Retrocedemos una página
             codex.GoBackward();
+
+            // Si nos encontramos en un inicio de capítulo
+            if (ChapterToPlay() != -1)
+            {
+                // mostramos mensaje indicando que el jugador puede iniciarlo
+                if (displayAdviceCoroutine != null)
+                {
+                    StopCoroutine(displayAdviceCoroutine);
+                }
+
+                displayAdviceCoroutine = DisplayAdvice(enterChapterMessage, false);
+                StartCoroutine(displayAdviceCoroutine);
+            }            
         }
     }
 
@@ -385,4 +411,17 @@ public class CodexManager : MonoBehaviour
             }
         }
     }    
+
+    public int GetStartingLeafIndexForChapter(int chapterNum)
+    {
+        for (int i = 0; i < codexIndices.Length; i++)
+        {
+            if (codexIndices[i].chapterNum == chapterNum)
+            {
+                return codexIndices[i].leafIndex;
+            }
+        }
+
+        return 0; // Valor por defecto si no se encuentra el capítulo
+    }
 }

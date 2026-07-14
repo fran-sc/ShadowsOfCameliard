@@ -30,7 +30,6 @@ public class CodexSimpl : MonoBehaviour
 
     [Header("Codex Pages")]
     [SerializeField] CodexPageSimpl[] codexPages;
-    [SerializeField] int startingLeafIndex = 0;
 
     [Header("Camera Settings")]
     [SerializeField] Camera codexCamera;
@@ -38,7 +37,8 @@ public class CodexSimpl : MonoBehaviour
     [SerializeField] float minOrthographicSize = 3f;
 
     int currentRightPageIndex = 0;
-
+    int startingLeafIndex = 0;
+    
     // Flag que indica si se está avanzando a una posición del libro
     bool isTransitionInProgress = false;
     
@@ -72,16 +72,30 @@ public class CodexSimpl : MonoBehaviour
         Vector3 initialPosition = transform.localPosition - new Vector3(bookWidth / 2f, 0f, 0f);
         transform.localPosition = initialPosition;
 
-        // Recuperamos el índice de página inicial desde GameManager
+        // Recuperamos el índice de página inicial a partir del capítulo seleccionado
         if (GameManager.Instance != null)
         {
-            startingLeafIndex = GameManager.Instance.StartingLeafIndex;
+            startingLeafIndex = GetStartingLeafIndex(GameManager.Instance.StartChapter);
         }
 
         if (startingLeafIndex > 0)
         {
             StartCoroutine(GotoPageRoutine(startingLeafIndex));
         }
+    }
+
+    int GetStartingLeafIndex(int chapterNum)
+    {
+        if (chapterNum == 0) return 0; 
+
+        // Obtenemos el índice de página inicial del capítulo
+        CodexManager codexManager = FindFirstObjectByType<CodexManager>();
+        if (codexManager != null)
+        {
+            return codexManager.GetStartingLeafIndexForChapter(chapterNum);
+        }
+        
+        return 0;
     }
 
     void SubscribeToPages()

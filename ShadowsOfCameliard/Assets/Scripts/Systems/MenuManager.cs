@@ -23,13 +23,13 @@ public class MenuManager : PersistentSingleton<MenuManager>
 
     Stack<GameObject> menuStack = new Stack<GameObject>();
 
-    void Start()
+    public void InitializeMenus(int lastUnlockedChapter=0)
     {
         HideAllMenus();
 
         PresetAudioSettings();
 
-        PresetChapterButtons();
+        PresetChapterButtons(lastUnlockedChapter);
 
         ShowMainMenu();
     }
@@ -54,15 +54,33 @@ public class MenuManager : PersistentSingleton<MenuManager>
         effectsVolumeSlider.value = AudioManager.Instance.EffectsVolume;
     }
 
-    void PresetChapterButtons()
+    void PresetChapterButtons(int lastUnlockedChapter)
     {
-        // Preset chapter buttons based on player progress
-        int lastUnlockedChapter = GameManager.Instance.LastUnlockedChapter + 1; // +1 because index starts at 0
+        // Habilita los botones de los capítulos desbloqueados y deshabilita los bloqueados
 
         for (int i = 0; i < chapterButtons.Length; i++)
         {
-            chapterButtons[i].interactable = (i < (lastUnlockedChapter - 1));
+            // +2 porque el primer botón corresponde al capítulo 2 (índice 0)
+            chapterButtons[i].interactable = (i + 2 <= lastUnlockedChapter);
         }   
+    }
+
+    void StartChapter(int chapterIndex)
+    {
+        // Obtenemos una referencia al TitleManager
+        TitleManager titleManager = FindFirstObjectByType<TitleManager>();
+
+        if (titleManager != null)
+        {
+            HideAllMenus(); // Ocultamos todos los menús antes de iniciar el juego
+
+            // Iniciamos el juego desde el capítulo seleccionado
+            titleManager.StartGameFromChapter(chapterIndex);
+        }
+        else
+        {
+            Debug.LogError("No se encontró una instancia de TitleManager en la escena.");
+        }
     }
 
     public void ShowMainMenu()
@@ -80,7 +98,7 @@ public class MenuManager : PersistentSingleton<MenuManager>
     // -------------------------------------------------------------------------
     public void MainMenu_NewGame_OnClick()
     {
-        // ToDO: Start new game
+        StartChapter(0);
     }
 
     public void MainMenu_Chapters_OnClick()
@@ -135,20 +153,17 @@ public class MenuManager : PersistentSingleton<MenuManager>
 
     public void ChaptersMenu_Ch1_OnClick()
     {
-        chaptersMenu.SetActive(false);
-        // ToDO: Load Chapter 1
+        StartChapter(2);
     }
 
     public void ChaptersMenu_Ch2_OnClick()
     {
-        chaptersMenu.SetActive(false);
-        // ToDO: Load Chapter 2
+        StartChapter(3);        
     }
 
     public void ChaptersMenu_Ch3_OnClick()
     {
-        chaptersMenu.SetActive(false);
-        // ToDO: Load Chapter 3
+        StartChapter(4);
     }
 
     // -------------------------------------------------------------------------

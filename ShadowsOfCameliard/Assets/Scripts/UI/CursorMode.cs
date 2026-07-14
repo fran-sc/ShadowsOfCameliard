@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +5,6 @@ using UnityEngine.InputSystem;
 // CursorModeController
 //
 // Responsabilidades:
-// - Configura el cursor personalizado al iniciar el juego.
 // - Oculta el cursor al hacer clic y lo muestra al pulsar Escape.
 //
 // Atributos principales:
@@ -15,17 +13,8 @@ using UnityEngine.InputSystem;
 // -----------------------------------------------------------------------------
 public class CursorModeController : MonoBehaviour
 {
-    [Header("Cursor Settings")]
-    [SerializeField] Texture2D mouseIcon;
-    [SerializeField] Vector2 sizeFactor = Vector2.zero;
-
     void Start()
     {   
-        Cursor.SetCursor(
-            mouseIcon, 
-            new Vector2(mouseIcon.width * sizeFactor.x, mouseIcon.height * sizeFactor.y),
-            CursorMode.Auto);
-
         SetCursorState(true);
     }
 
