@@ -1959,6 +1959,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5180640768957775026, guid: f1d43b32c0cbd5396832d5ddc0143e46, type: 3}
+      propertyPath: mainMenuOffset.y
+      value: -146
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
