@@ -42,7 +42,13 @@ public static class GameReset
 
         foreach (GameObject root in dontDestroyScene.GetRootGameObjects())
         {
-            if (root != temp && root.name != "GameManager" && root.name != "SceneManagement" && root.name != "AudioManager" && root.name != "UIFade")
+            if (root != temp && 
+                root.name != "GameManager" && 
+                root.name != "SceneManagement" && 
+                root.name != "AudioManager" && 
+                root.name != "UIFade" &&
+                root.name != "MenuManager" &&
+                root.name != "SaveManager")
             {
                 Object.Destroy(root);
             }

@@ -12,25 +12,43 @@ using UnityEngine.InputSystem;
 // - sizeFactor: factor para calcular el hotspot del cursor.
 // -----------------------------------------------------------------------------
 public class CursorModeController : MonoBehaviour
-{
+{    
+    [Header("Cursor Icon Settings")]
+    [SerializeField] Texture2D mouseIcon;
+    [SerializeField] Vector2 hotSpot = Vector2.zero;  
+
+    void Awake()
+    {
+        Cursor.SetCursor(
+            mouseIcon, 
+            hotSpot,
+            CursorMode.Auto);        
+    }
+
     void Start()
-    {   
-        SetCursorState(true);
+    {
+        //HideCursor(!MenuManager.Instance.IsMenuOpen);
     }
 
     void Update()
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            SetCursorState(false);
+        {            
+            HideCursor(false);
         }
         else if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            SetCursorState(true);
+            if (MenuManager.Instance.IsMenuOpen)
+            {
+                // Si hay un menú activo, no ocultamos el cursor
+                return;
+            }
+
+            HideCursor(true);
         }
     }
 
-    void SetCursorState(bool hideCursor)
+    public void HideCursor(bool hideCursor)
     {
         Cursor.lockState = hideCursor ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = !hideCursor;

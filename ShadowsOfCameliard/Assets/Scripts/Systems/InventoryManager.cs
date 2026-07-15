@@ -205,14 +205,14 @@ public class InventoryManager : PersistentSingleton<InventoryManager>, IPlayerCo
 
         if (IsInventoryOpen)
         {
-            Time.timeScale = 0;
+            GameManager.Instance.StopTime();
             ShowInventory(true);
             InputManager.Instance.SwitchMap(ControlMap.Inventory);
         }
         else
         {
             ShowInventory(false);
-            Time.timeScale = 1;
+            GameManager.Instance.ResumeTime();
             InputManager.Instance.SwitchMap(ControlMap.Player);
         }
     }

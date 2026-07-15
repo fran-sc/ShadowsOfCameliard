@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuManager : PersistentSingleton<MenuManager>
@@ -11,6 +13,7 @@ public class MenuManager : PersistentSingleton<MenuManager>
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject audioMenu;
     [SerializeField] GameObject controlsMenu;
+    [SerializeField] GameObject exitConfirmationMenu;
 
     [Header("Audio Settings References")]
     [SerializeField] Toggle musicToggle;
@@ -23,17 +26,66 @@ public class MenuManager : PersistentSingleton<MenuManager>
 
     Stack<GameObject> menuStack = new Stack<GameObject>();
 
-    public void InitializeMenus(int lastUnlockedChapter=0)
+    public bool IsMenuOpen => 
+        mainMenu.activeSelf || 
+        inGameMenu.activeSelf || 
+        chaptersMenu.activeSelf || 
+        settingsMenu.activeSelf || 
+        audioMenu.activeSelf || 
+        controlsMenu.activeSelf ||
+        exitConfirmationMenu.activeSelf;
+
+    void Update()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame ||
+            Gamepad.current?.startButton.wasPressedThisFrame == true)
+        {
+            // Obtenemos la escena actual
+            string currentSceneName = SceneManager.GetActiveScene().name;
+
+            // Si estamos en la escena del título o en la escena del codex, no hacemos nada
+            if (currentSceneName == "MainTitle" || currentSceneName == "Codex")
+            {
+                return;
+            }
+
+            if (IsMenuOpen)
+            {
+                // Si hay un menú activo, lo ocultamos
+                HideAllMenus();
+
+                // Activamos el mapa de acciones del jugador para que pueda moverse nuevamente
+                InputManager.Instance.SwitchMap(ControlMap.Player);
+
+                // y continuamos el tiempo si estaba pausado
+                GameManager.Instance.ResumeTime();
+            }
+            else
+            {
+                // Desactivamos el mapa de acciones del jugador para evitar que se mueva mientras el menú está abierto
+                InputManager.Instance.SwitchMap(ControlMap.Menu);
+
+                // Si no hay ningún menú activo, mostramos el menú en juego
+                ShowInGameMenu();
+
+                // y pausamos el tiempo
+                GameManager.Instance.StopTime();
+            }
+        }
+    }
+
+    public void InitializeMenus()
     {
         HideAllMenus();
 
         PresetAudioSettings();
 
-        PresetChapterButtons(lastUnlockedChapter);
+        PresetChapterButtons();
 
         ShowMainMenu();
     }
-    void HideAllMenus()
+
+    public void HideAllMenus()
     {
         mainMenu.SetActive(false);
         inGameMenu.SetActive(false);
@@ -41,6 +93,7 @@ public class MenuManager : PersistentSingleton<MenuManager>
         settingsMenu.SetActive(false);
         audioMenu.SetActive(false);
         controlsMenu.SetActive(false);
+        exitConfirmationMenu.SetActive(false);
     }
 
     void PresetAudioSettings()
@@ -54,9 +107,11 @@ public class MenuManager : PersistentSingleton<MenuManager>
         effectsVolumeSlider.value = AudioManager.Instance.EffectsVolume;
     }
 
-    void PresetChapterButtons(int lastUnlockedChapter)
+    void PresetChapterButtons()
     {
         // Habilita los botones de los capítulos desbloqueados y deshabilita los bloqueados
+
+        int lastUnlockedChapter = GameManager.Instance.LastUnlockedChapter;
 
         for (int i = 0; i < chapterButtons.Length; i++)
         {
@@ -116,7 +171,7 @@ public class MenuManager : PersistentSingleton<MenuManager>
 
     public void MainMenu_Exit_OnClick()
     {
-        // ToDO: Exit game
+        GameManager.Instance.QuitGame();
     }
 
     // -------------------------------------------------------------------------
@@ -125,7 +180,12 @@ public class MenuManager : PersistentSingleton<MenuManager>
     public void InGameMenu_Continue_OnClick()
     {
         inGameMenu.SetActive(false);
-        // ToDO: Continue game
+        
+        // Activamos el mapa de acciones del jugador para que pueda moverse nuevamente
+        InputManager.Instance.SwitchMap(ControlMap.Player);
+
+        // Reanudamos el tiempo
+        GameManager.Instance.ResumeTime();
     }
 
     public void InGameMenu_Settings_OnClick()
@@ -138,7 +198,8 @@ public class MenuManager : PersistentSingleton<MenuManager>
     public void InGameMenu_Exit_OnClick()
     {
         inGameMenu.SetActive(false);
-        // ToDO: Exit game
+        mainMenu.SetActive(false);
+        exitConfirmationMenu.SetActive(true);
     }
 
     // -------------------------------------------------------------------------
@@ -226,4 +287,24 @@ public class MenuManager : PersistentSingleton<MenuManager>
         controlsMenu.SetActive(false);
         menuStack.Pop().SetActive(true);    
     }
+
+    // -------------------------------------------------------------------------
+    // Exit Confirmation Menu Buttons
+    // -------------------------------------------------------------------------
+    public void ExitConfirmationMenu_Yes_OnClick()
+    {
+        exitConfirmationMenu.SetActive(false);
+
+        GameManager.Instance.LoadSceneWithFade(
+            "MainTitle", 
+            UIFade.Instance.FadeDuration, 
+            true);
+    }
+
+    public void ExitConfirmationMenu_No_OnClick()
+    {
+        exitConfirmationMenu.SetActive(false);
+        inGameMenu.SetActive(true);
+    }
 }
+

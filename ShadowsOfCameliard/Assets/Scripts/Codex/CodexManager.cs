@@ -132,10 +132,12 @@ public class CodexManager : MonoBehaviour
             playerInput.enabled = false;
         }
 
+        /*
         if (UIFade.Instance != null)
         {
             UIFade.Instance.FadeToBlack();
         }
+        */
 
         // Lanzamos la corrutina de avance de página con un retardo
         StartCoroutine(AdvancePageAfterDelay(1f));
@@ -152,7 +154,8 @@ public class CodexManager : MonoBehaviour
         */
 
         // Iniciar la corrutina para esperar a que el fade-out termine y luego cargar la siguiente escena
-        StartCoroutine(FadeOutMusicAndLoadNextScene(nextSceneDelay));
+        //StartCoroutine(FadeOutMusicAndLoadNextScene(nextSceneDelay));
+        GameManager.Instance.LoadSceneWithFade(nextSceneName, nextSceneDelay, true);
     }
 
     IEnumerator AdvancePageAfterDelay(float delay)
