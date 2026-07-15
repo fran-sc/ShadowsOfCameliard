@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class MenuManager : PersistentSingleton<MenuManager>
 {
+    [Header("Main Menu Settings")]
+    [SerializeField] Vector2 mainMenuOffset = new Vector2(0, 0); // Ajuste de posición vertical para centrar el menú
+
     [Header("Menu References")]
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject inGameMenu;
@@ -138,13 +141,54 @@ public class MenuManager : PersistentSingleton<MenuManager>
         }
     }
 
+    // -------------------------------------------------------------------------
+    // AdjustMenuPosition
+    //
+    // - Ajusta la posición vertical de un menú para que esté centrado respecto
+    //   a la posición .
+    // -------------------------------------------------------------------------
+    private void AdjustMenuPosition(GameObject menu, GameObject parent, Vector2 offset)
+    {
+        // Panel prinicpal del menú
+        GameObject menuPanel = menu.transform.Find("Panel")?.gameObject;
+        
+        if (menuPanel != null)
+        {
+            // Obtenemos el RectTransform del panel y ajustamos su posición
+            RectTransform menuRect = menuPanel.GetComponent<RectTransform>();
+            if (menuRect != null)
+            {
+                menuRect.anchoredPosition = Vector2.zero; // Reiniciamos la posición antes de aplicar el offset
+                
+                // Si hay un menú padre, lo utilizamos como posición base
+                if (parent != null)
+                {                    
+                    GameObject parentPanel = parent.transform.Find("Panel")?.gameObject;
+                    if (parentPanel != null)
+                    {
+                        RectTransform parentRect = parentPanel.GetComponent<RectTransform>();
+                        if (parentRect != null)
+                        {
+                            menuRect.anchoredPosition = parentRect.anchoredPosition;
+                        }
+                    }
+                }
+
+                // Añadimos el offset
+                menuRect.anchoredPosition += offset;
+            }
+        }   
+    }
+
     public void ShowMainMenu()
     {
+        AdjustMenuPosition(mainMenu, null, mainMenuOffset);
         mainMenu.SetActive(true);
     }
 
     public void ShowInGameMenu()
     {
+        AdjustMenuPosition(inGameMenu, null, Vector2.zero);
         inGameMenu.SetActive(true);
     }
 
@@ -159,12 +203,14 @@ public class MenuManager : PersistentSingleton<MenuManager>
     public void MainMenu_Chapters_OnClick()
     {
         mainMenu.SetActive(false);
+        AdjustMenuPosition(chaptersMenu, mainMenu, Vector2.zero);
         chaptersMenu.SetActive(true);
     }
 
     public void MainMenu_Settings_OnClick()
     {
         mainMenu.SetActive(false);
+        AdjustMenuPosition(settingsMenu, mainMenu, Vector2.zero);
         settingsMenu.SetActive(true);
         menuStack.Push(mainMenu);
     }
@@ -191,6 +237,7 @@ public class MenuManager : PersistentSingleton<MenuManager>
     public void InGameMenu_Settings_OnClick()
     {
         inGameMenu.SetActive(false);
+        AdjustMenuPosition(settingsMenu, inGameMenu, Vector2.zero);
         settingsMenu.SetActive(true);
         menuStack.Push(inGameMenu);
     }
@@ -239,6 +286,7 @@ public class MenuManager : PersistentSingleton<MenuManager>
     public void SettingsMenu_Audio_OnClick()
     {
         settingsMenu.SetActive(false);
+        AdjustMenuPosition(audioMenu, settingsMenu, Vector2.zero);
         audioMenu.SetActive(true);
         menuStack.Push(settingsMenu);
     }
