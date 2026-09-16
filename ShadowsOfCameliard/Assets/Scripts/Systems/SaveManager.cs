@@ -2,11 +2,24 @@ using System;
 using System.IO;
 using UnityEngine;
 
+
+// -----------------------------------------------------------------------------
+// SaveManager
+//
+// Responsabilidades:
+// - Gestiona la persistencia de datos del juego.
+// - Permite desbloquear capítulos y guardar la partida.
+// - Carga y guarda los datos en un archivo JSON en la ruta persistente del juego
+// -----------------------------------------------------------------------------
+
 public class SaveManager : PersistentSingleton<SaveManager>
 {
-    const string SaveFileName = "savegame.json";
+    const string SaveFileName = "soc_data.json";
 
+    // Datos de guardado
     SaveData saveData;
+
+    // Ruta completa del archivo de guardado
     string saveFilePath;
 
     public int LastUnlockedChapter => saveData.lastUnlockedChapter;

@@ -49,7 +49,7 @@ public class CodexManager : MonoBehaviour
     [SerializeField] [TextArea(3, 10)] string enterChapterMessage = "Press [RET] to start the chapter";
     [SerializeField] float messageFadeInDuration = 1f;
     [SerializeField] float messageShowDuration = 1f;
-    [SerializeField] float messageFadeOutDuration = 3f;
+    [SerializeField] float messageFadeOutDuration = 2f;
     [SerializeField] float waitBeforeMessageDisplay = 5f;
     [SerializeField] TextMeshProUGUI UIMessage;
 
@@ -215,34 +215,31 @@ public class CodexManager : MonoBehaviour
     // se muestra un mensaje en pantalla indicando que use los controles de movimiento para pasar las páginas del códice.
     IEnumerator WaitForIntereaction()
     {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < waitBeforeMessageDisplay)
+        while (codex != null && codex.CurrentRightPageIndex == 0)
         {
+            yield return new WaitForSeconds(waitBeforeMessageDisplay);
+
             if (codex != null && codex.CurrentRightPageIndex > 0)
             {
                 yield break; // El jugador ha pasado una página, no mostrar el mensaje.
             }
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            // El jugador no ha pasado ninguna página, mostramos el mensaje de ayuda
+            if (displayAdviceCoroutine != null)
+            {
+                StopCoroutine(displayAdviceCoroutine);
+            }
+            displayAdviceCoroutine = DisplayAdvice(movementMessage);
+            StartCoroutine(displayAdviceCoroutine);
         }
-
-        if (displayAdviceCoroutine != null)
-        {
-            StopCoroutine(displayAdviceCoroutine);
-        }
-        displayAdviceCoroutine = DisplayAdvice(movementMessage, true);
-        StartCoroutine(displayAdviceCoroutine);
     }
 
     // -----------------------------------------------------------------------------
     // DisplayAdvice
     //
     // - Muestra el mensaje con fade-in, lo mantiene visible y aplica fade-out.
-    // - Si loop es true, se rellanza al terminar para mostrar el mensaje en bucle.
     // -----------------------------------------------------------------------------
-    IEnumerator DisplayAdvice(string msg, bool loop = false)
+    IEnumerator DisplayAdvice(string msg)
     {
         float elapsedTime = 0f;
 
@@ -274,18 +271,6 @@ public class CodexManager : MonoBehaviour
                 yield return null;
             }
             UIMessage.alpha = 0f;
-        }
-
-        // Relanzamos la corrutina para volver a comprobar si el jugador ha pasado alguna página.
-        if (loop)
-        {
-            if (displayAdviceCoroutine != null)
-            {
-                StopCoroutine(displayAdviceCoroutine);
-            }
-
-            displayAdviceCoroutine = DisplayAdvice(msg, true);
-            StartCoroutine(displayAdviceCoroutine);
         }
     }
 
@@ -368,7 +353,7 @@ public class CodexManager : MonoBehaviour
                     StopCoroutine(displayAdviceCoroutine);
                 }
 
-                displayAdviceCoroutine = DisplayAdvice(enterChapterMessage, false);
+                displayAdviceCoroutine = DisplayAdvice(enterChapterMessage);
                 StartCoroutine(displayAdviceCoroutine);
             }
         }
@@ -396,7 +381,7 @@ public class CodexManager : MonoBehaviour
                     StopCoroutine(displayAdviceCoroutine);
                 }
 
-                displayAdviceCoroutine = DisplayAdvice(enterChapterMessage, false);
+                displayAdviceCoroutine = DisplayAdvice(enterChapterMessage);
                 StartCoroutine(displayAdviceCoroutine);
             }            
         }

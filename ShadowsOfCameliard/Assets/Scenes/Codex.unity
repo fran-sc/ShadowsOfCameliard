@@ -1118,7 +1118,7 @@ MonoBehaviour:
   enterChapterMessage: Press [RET] to start the chapter
   messageFadeInDuration: 0.75
   messageShowDuration: 1
-  messageFadeOutDuration: 4
+  messageFadeOutDuration: 3
   waitBeforeMessageDisplay: 5
   UIMessage: {fileID: 1063387088}
   codexIndices:
