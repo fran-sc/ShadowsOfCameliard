@@ -336,6 +336,7 @@ public class CodexManager : MonoBehaviour
         if (codex.CurrentRightPageIndex == lastUnlockedLeafIndex)
         {
             // No avanzamos más allá de la última página desbloqueada
+            Debug.Log("No se puede avanzar más allá de la última página desbloqueada.");
             return; 
         }
 

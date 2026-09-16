@@ -106,7 +106,7 @@ public class SaveManager : PersistentSingleton<SaveManager>
     {
         saveData = new SaveData
         {
-            lastUnlockedChapter = 1
+            lastUnlockedChapter = 2
         };
 
         SaveGame();
@@ -116,5 +116,5 @@ public class SaveManager : PersistentSingleton<SaveManager>
 [Serializable]
 public class SaveData
 {
-    public int lastUnlockedChapter = 1;
+    public int lastUnlockedChapter = 2;
 }
