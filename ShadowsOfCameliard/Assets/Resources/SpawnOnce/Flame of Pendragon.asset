@@ -18,8 +18,8 @@ MonoBehaviour:
   state: 0
   spawnPosition: {x: -51, y: 18, z: 0}
   itemPrefab: {fileID: 8372676152640828798, guid: c4a0044d7bd8d4552baef11205b02c6e, type: 3}
-  message: "Esta p\xF3cima es la \"Llama de Pendrag\xF3n\", el fuego del linaje de
-    Arturo, sellado en cristal por la mano de Merl\xEDn."
+  message: "This potion is Pendragon\u2019s Flame, the fire of Arthur\u2019s bloodline,
+    sealed within crystal by Merlin\u2019s hand."
   damage: 10
   pushForce: 10
   weaponSprite: {fileID: 21300000, guid: 2239a9a229a0d0f5384e8e0b739c06be, type: 3}

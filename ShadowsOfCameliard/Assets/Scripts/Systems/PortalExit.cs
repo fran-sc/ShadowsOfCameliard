@@ -25,8 +25,11 @@ public class PortalExit : MonoBehaviour
             // Deshabilita el control del jugador para evitar que se mueva durante la transición
             InputManager.Instance.Controls.Player.Disable();
 
-            // Oculta el sprite del jugador
-            PlayerController.Instance.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            // Oculta el sprite del jugador y de la sombra para que no se vea durante la transición
+            foreach (SpriteRenderer sr in PlayerController.Instance.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.enabled = false;
+            }
 
             // Carga la nueva escena
             StartCoroutine(LoadScene());

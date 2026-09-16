@@ -18,8 +18,8 @@ MonoBehaviour:
   state: 1
   spawnPosition: {x: -2.5, y: 0.3, z: 0}
   itemPrefab: {fileID: 8372676152640828798, guid: 15993dccc043269518d8a58607659b81, type: 3}
-  message: "El \"Acero de Benwick\". Una hoja humilde en manos de un h\xE9roe puede
-    cambiar el destino de un reino."
+  message: The Steel of Benwick. A humble blade in the hands of a hero can change
+    the fate of a kingdom.
   damage: 1
   pushForce: 4
   weaponSprite: {fileID: 21300000, guid: 6161165a89b2d21aa80ac8df2d12ba8e, type: 3}

@@ -33,8 +33,11 @@ public class PortalSpawn : MonoBehaviour
             // Habilitamos los controles del jugador
             InputManager.Instance.Controls.Player.Enable();
 
-            // Habilitamos el sprite del jugador
-            PlayerController.Instance.GetComponentInChildren<SpriteRenderer>().enabled = true;
+            // Habilitamos el sprite del jugador y de la sombra para que se vea después de la transición
+            foreach (SpriteRenderer sr in PlayerController.Instance.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.enabled = true;
+            }
 
             // Establecemos la cámara para que siga al jugador
             CameraManager.Instance.SetPlayerCameraFollow();
