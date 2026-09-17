@@ -17,7 +17,8 @@ public class CameraManager : PersistentSingleton<CameraManager>
     // -----------------------------------------------------------------------------
     public void SetPlayerCameraFollow()
     {
-        CinemachineCamera cam = FindFirstObjectByType<CinemachineCamera>();
+        //CinemachineCamera cam = FindFirstObjectByType<CinemachineCamera>();
+        CinemachineCamera cam = FindAnyObjectByType<CinemachineCamera>();
         cam.Follow = PlayerController.Instance.transform;
     }
 }

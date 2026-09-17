@@ -126,7 +126,8 @@ public class MenuManager : PersistentSingleton<MenuManager>
     void StartChapter(int chapterIndex)
     {
         // Obtenemos una referencia al TitleManager
-        TitleManager titleManager = FindFirstObjectByType<TitleManager>();
+        //TitleManager titleManager = FindFirstObjectByType<TitleManager>();
+        TitleManager titleManager = FindAnyObjectByType<TitleManager>();
 
         if (titleManager != null)
         {

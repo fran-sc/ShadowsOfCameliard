@@ -89,7 +89,8 @@ public class CodexSimpl : MonoBehaviour
         if (chapterNum == 0) return 0; 
 
         // Obtenemos el índice de página inicial del capítulo
-        CodexManager codexManager = FindFirstObjectByType<CodexManager>();
+        //CodexManager codexManager = FindFirstObjectByType<CodexManager>();
+        CodexManager codexManager = FindAnyObjectByType<CodexManager>();    
         if (codexManager != null)
         {
             return codexManager.GetStartingLeafIndexForChapter(chapterNum);
